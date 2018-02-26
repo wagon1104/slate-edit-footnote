@@ -31,7 +31,7 @@
     "watchify": "^3.7.0"
   },
   "scripts": {
-    "prepublish": "babel ./src --out-dir ./dist",
+    "prepublish1": "babel ./src --out-dir ./dist",
     "postpublish": "npm run deploy-example",
     "start": "npm run build-example; npm run serve-example",
     "build-example": "browserify ./example/main.js -o ./example/bundle.js -t [ babelify --presets [ es2015 react ] ]",
