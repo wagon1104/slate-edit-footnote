@@ -14,11 +14,11 @@ const DEFAULT_TEXT = 'Enter footnote here.';
  * @return {Slate.Transform}
  */
 function insertFootnote(opts, transform, defaultText = DEFAULT_TEXT) {
-    const { state }   = transform;
-    const footnotes   = getFootnotesCount(opts, state);
+    const { value }   = transform;
+    const footnotes   = getFootnotesCount(opts, value);
     const footnodeRef = String(footnotes + 1);
 
-    const { document } = state;
+    const { document } = value;
     const lastIndex = document.nodes.count();
     const footnote = Slate.Block.create({
         type: opts.typeFootnote,
@@ -46,7 +46,7 @@ function insertFootnote(opts, transform, defaultText = DEFAULT_TEXT) {
         .moveToRangeOf(footnote)
         .insertText(defaultText)
         // set selection to footnote
-        .extendBackward(defaultText.length);
+        .extend(defaultText.length);
 
     return transform;
 }
