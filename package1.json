@@ -1,9 +1,34 @@
 {
   "name": "slate-edit-footnote",
   "description": "A Slate plugin to work with footnote.",
-  "version": "0.3.4",
+  "version": "0.3.3",
   "license": "Apache-2.0",
   "main": "./dist/index.js",
+  "dependencies": {
+    "immutable": "^3.8.1"
+  },
+  "peerDependencies": {
+    "slate": "*"
+  },
+  "devDependencies": {
+    "slate": "0.15.10",
+    "babel-cli": "^6.11.4",
+    "babel-core": "^6.11.4",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.11.1",
+    "babelify": "^7.3.0",
+    "browserify": "^13.1.1",
+    "eslint": "^3.9.1",
+    "eslint-config-gitbook": "1.4.0",
+    "expect": "^1.20.2",
+    "gh-pages": "^0.11.0",
+    "http-server": "^0.9.0",
+    "mocha": "^3.0.1",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "read-metadata": "^1.0.0",
+    "watchify": "^3.7.0"
+  },
   "scripts": {
     "prepublish1": "babel ./src --out-dir ./dist",
     "postpublish": "npm run deploy-example",
