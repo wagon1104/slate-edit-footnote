@@ -1,9 +1,8 @@
 {
   "name": "slate-edit-footnote",
   "description": "A Slate plugin to work with footnote.",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "license": "Apache-2.0",
-  "repository": "git://github.com/GitbookIO/slate-edit-footnote.git",
   "main": "./dist/index.js",
   "dependencies": {
     "immutable": "^3.8.1"
@@ -33,8 +32,8 @@
   "scripts": {
     "prepublish1": "babel ./src --out-dir ./dist",
     "postpublish": "npm run deploy-example",
-    "start": "npm run build-example; npm run serve-example",
-    "build-example": "browserify ./example/main.js -o ./example/bundle.js -t [ babelify --presets [ es2015 react ] ]",
+    "start": "npm run build-example && npm run serve-example",
+    "build-example": "browserify --debug ./example/main.js -o ./example/bundle.js -t [ babelify --presets [ es2015 react ] ]",
     "watch-example": "watchify ./example/main.js -o ./example/bundle.js -t [ babelify --presets [ es2015 react ] ] -v",
     "serve-example": "http-server ./example/ -p 8080",
     "deploy-example": "npm run build-example; gh-pages -d ./example",

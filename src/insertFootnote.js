@@ -26,7 +26,9 @@ function insertFootnote(opts, transform, defaultText = DEFAULT_TEXT) {
         nodes: [Slate.Text.create()]
     });
 
+    console.log("AAAAAAAAAA");
     transform = transform
+    
         // Collapse selection
         .collapseToEnd()
 
@@ -46,7 +48,7 @@ function insertFootnote(opts, transform, defaultText = DEFAULT_TEXT) {
         .moveToRangeOf(footnote)
         .insertText(defaultText)
         // set selection to footnote
-        .extend(defaultText.length);
+        .extendLineBackward(defaultText.length);
 
     return transform;
 }

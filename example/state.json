@@ -1,32 +1,34 @@
 {
-    "nodes": [
-        {
-            "kind": "block",
-            "type": "heading",
-            "nodes": [
-                {
-                    "kind": "text",
-                    "ranges": [
-                        {
-                            "text": "Slate + Footnote Edition"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "kind": "block",
-            "type": "paragraph",
-            "nodes": [
-                {
-                    "kind": "text",
-                    "ranges": [
-                        {
-                            "text": "This page is a basic example of Slate + slate-edit-footnote plugin."
-                        }
-                    ]
-                }
-            ]
-        }
-    ]
+    "document": {
+        "nodes": [
+            {
+                "object": "block",
+                "type": "heading",
+                "nodes": [
+                    {
+                        "object": "text",
+                        "leaves": [
+                            {
+                                "text": "Slate + Footnote Edition"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "object": "block",
+                "type": "paragraph",
+                "nodes": [
+                    {
+                        "object": "text",
+                        "leaves": [
+                            {
+                                "text": "This page is a basic example of Slate + slate-edit-footnote plugin."
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
 }

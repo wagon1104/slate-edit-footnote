@@ -1,9 +1,38 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-const Slate = require('slate');
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { Editor } from 'slate-react'
+import { Value } from 'slate'
+import PropTypes from 'prop-types';
+import createReactClass from 'create-react-class'
+// const React = require('react');
+// const ReactDOM = require('react-dom');
+// const Slate = require('slate');
 const FootnotePlugin = require('../src');
 
 const stateJson = require('./state');
+
+const initialValue = Value.fromJSON(stateJson)
+// const initialValue = Value.fromJSON({
+//     document: {
+//       nodes: [
+//         {
+//           object: 'block',
+//           type: 'paragraph',
+//           nodes: [
+//             {
+//               object: 'text',
+//               leaves: [
+//                 {
+//                   text: 'A line of text in a paragraph.',
+//                 },
+//               ],
+//             },
+//           ],
+//         },
+//       ],
+//     },
+//   })
+
 
 const footnotePlugin = FootnotePlugin();
 const plugins = [
@@ -21,22 +50,22 @@ const schema = {
 };
 
 schema.nodes.paragraph.propTypes = schema.nodes.heading.propTypes = {
-    attributes: React.PropTypes.object.isRequired,
-    children:   React.PropTypes.node.isRequired
+    attributes: PropTypes.object.isRequired,
+    children:   PropTypes.node.isRequired
 };
 
 schema.nodes.footnote_ref.propTypes = {
-    node: React.PropTypes.object.isRequired
+    node: PropTypes.object.isRequired
 };
 
 schema.nodes.footnote.propTypes = {
-    node:     React.PropTypes.object.isRequired,
-    children: React.PropTypes.node.isRequired
+    node:     PropTypes.object.isRequired,
+    children: PropTypes.node.isRequired
 };
 
-const Toolbar = React.createClass({
+const Toolbar = createReactClass({
     propTypes: {
-        onInsertFootnote: React.PropTypes.func.isRequired
+        onInsertFootnote: PropTypes.func.isRequired
     },
 
     render() {
@@ -48,29 +77,33 @@ const Toolbar = React.createClass({
     }
 });
 
-const Example = React.createClass({
+const Example = createReactClass({
     getInitialState() {
         return {
-            state: Slate.Raw.deserialize(stateJson, { terse: true })
+            value: initialValue//Slate.Raw.deserialize(stateJson, { terse: true })
         };
     },
 
-    onChange(state) {
-        this.setState({
-            state
-        });
+    onChange({ value })  {
+        console.log(JSON.stringify(value.toJSON()))
+        this.setState({ value })
     },
-
+    renderNode(props ){
+        var type = props.node.type;
+  
+        var Comp = schema.nodes[type]
+        if(Comp)return <Comp {...props} />
+    },
     onInsertFootnote(e) {
-        const { state } = this.state;
+        const { value } = this.state;
 
         this.onChange(
-            footnotePlugin.transforms.insertFootnote(state.transform()).focus().apply()
+            footnotePlugin.transforms.insertFootnote(value.change()).focus()
         );
     },
 
     render() {
-        const { state } = this.state;
+        // const { value } = this.state;
 
         return (
             <div>
@@ -78,17 +111,19 @@ const Example = React.createClass({
                     onInsertFootnote={this.onInsertFootnote}
                 />
 
-                <Slate.Editor
+                <Editor
                     placeholder={'Enter some text...'}
-                    plugins={plugins}
-                    state={state}
+                    // plugins={plugins}
+                    value={this.state.value}
                     onChange={this.onChange}
-                    schema={schema}
+                    renderNode={this.renderNode}
                 />
             </div>
         );
     }
 });
+
+
 
 ReactDOM.render(
     <Example />,
