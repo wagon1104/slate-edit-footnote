@@ -16,7 +16,7 @@ function EditFootnote(opts = {}) {
 
     return {
         // schema,
-        validateNode: makeSchema.bind(null,opts),
+        // validateNode: makeSchema.bind(null,opts),
 
         onKeyDown: onKeyDown.bind(null, opts),
 
