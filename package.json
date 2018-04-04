@@ -1,7 +1,7 @@
 {
   "name": "slate-edit-footnote",
   "description": "A Slate plugin to work with footnote.",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "license": "Apache-2.0",
   "main": "./dist/index.js",
   "scripts": {

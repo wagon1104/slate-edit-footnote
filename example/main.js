@@ -85,7 +85,7 @@ const Example = createReactClass({
     },
 
     onChange({ value })  {
-        console.log(JSON.stringify(value.toJSON()))
+        // console.log(JSON.stringify(value.toJSON()))
         this.setState({ value })
     },
     renderNode(props ){
@@ -113,7 +113,7 @@ const Example = createReactClass({
 
                 <Editor
                     placeholder={'Enter some text...'}
-                    // plugins={plugins}
+                    plugins={plugins}
                     value={this.state.value}
                     onChange={this.onChange}
                     renderNode={this.renderNode}

@@ -14,15 +14,18 @@ var isSelectionInFootnote = require('./utils/isSelectionInFootnote');
  *
  */
 module.exports = function onKeyDown(opts, event, data, state) {
-    if (!(data.key === 'enter' && isSelectionInFootnote(opts, state))) {
+    // console.log("--------onKeyDown----------",event.key,event.key === 'Enter')
+    if (!(event.key === 'Enter' && isSelectionInFootnote(opts, data.value))) {
+        // console.log("--------onKeyDown----------A")
         return;
     }
-
+    // console.log("--------onKeyDown----------B")
+    // debugger;
     // Only handle key enter and events in footnotes
     event.stopPropagation();
     event.preventDefault();
 
-    var document = state.document;
+    var document = data.value.document;
 
     // Find first footnote index for a footnote in the document
 
@@ -31,10 +34,16 @@ module.exports = function onKeyDown(opts, event, data, state) {
     });
 
     // Create an empty block of type defaultBlock
+    // const block = Slate.Block.create({
+    //     type: opts.defaultBlock,
+    //     data: {}
+    // });
     var block = Slate.Block.create({
         type: opts.defaultBlock,
-        data: {}
+        data: {},
+        nodes: [Slate.Text.create()]
     });
 
-    return state.transform().insertNodeByKey(document.key, firstFootnoteIndex, block).moveToRangeOf(block).apply();
+    return data.insertNodeByKey(document.key, firstFootnoteIndex, block).moveToRangeOf(block);
+    // .apply();
 };

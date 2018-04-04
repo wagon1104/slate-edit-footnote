@@ -26,7 +26,7 @@ function insertFootnote(opts, transform, defaultText = DEFAULT_TEXT) {
         nodes: [Slate.Text.create()]
     });
 
-    console.log("AAAAAAAAAA");
+    // console.log("AAAAAAAAAA");
     transform = transform
     
         // Collapse selection

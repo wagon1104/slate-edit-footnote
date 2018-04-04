@@ -32,7 +32,7 @@ function insertFootnote(opts, transform) {
         nodes: [Slate.Text.create()]
     });
 
-    console.log("AAAAAAAAAA");
+    // console.log("AAAAAAAAAA");
     transform = transform
 
     // Collapse selection

@@ -12,10 +12,11 @@ function EditFootnote(opts = {}) {
     opts.typeRef = opts.typeRef || 'footnote_ref';
     opts.defaultBlock = opts.defaultBlock || 'paragraph';
 
-    const schema = makeSchema(opts);
+    // const schema = makeSchema(opts);
 
     return {
-        schema,
+        // schema,
+        validateNode: makeSchema.bind(null,opts),
 
         onKeyDown: onKeyDown.bind(null, opts),
 
