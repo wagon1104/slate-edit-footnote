@@ -20,8 +20,8 @@
  * @return {Transform} transform
  */
 function moveToDocumentEnd(transform, node) {
-    const { state } = transform;
-    const { document } = state;
+    const { value } = transform;
+    const { document } = value;
     return transform.moveNodeByKey(node.key, document.key, document.nodes.size);
 }
 

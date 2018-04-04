@@ -21,8 +21,8 @@
  * @return {Transform} transform
  */
 function moveToDocumentEnd(transform, node) {
-    var state = transform.state;
-    var document = state.document;
+    var value = transform.value;
+    var document = value.document;
 
     return transform.moveNodeByKey(node.key, document.key, document.nodes.size);
 }
