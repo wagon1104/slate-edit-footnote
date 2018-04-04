@@ -111,7 +111,7 @@ function makeSchema(opts, node) {
             // will always exist after each merge.
             [invalids].reverse().forEach(function (n) {
                 //   change.removeNodeByKey(n.key, { normalize: false })
-                n.footnotes.reduce(moveToDocumentEnd, transform);
+                n.footnotes.reduce(moveToDocumentEnd, change);
             });
         };
     }
@@ -130,7 +130,7 @@ function makeSchema(opts, node) {
             // will always exist after each merge.
             [_invalids].reverse().forEach(function (n) {
                 //   change.removeNodeByKey(n.key, { normalize: false })
-                n.reduce(moveToDocumentEnd, transform);
+                n.reduce(moveToDocumentEnd, change);
             });
         };
     }

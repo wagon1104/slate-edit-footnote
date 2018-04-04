@@ -101,7 +101,7 @@ function makeSchema(opts,node) {
             [invalids].reverse().forEach((n) => {
             //   change.removeNodeByKey(n.key, { normalize: false })
             n.footnotes
-                    .reduce(moveToDocumentEnd, transform)
+                    .reduce(moveToDocumentEnd, change)
             })
         }
     }
@@ -123,7 +123,7 @@ function makeSchema(opts,node) {
             // will always exist after each merge.
             [invalids].reverse().forEach((n) => {
             //   change.removeNodeByKey(n.key, { normalize: false })
-            n.reduce(moveToDocumentEnd, transform);
+            n.reduce(moveToDocumentEnd, change);
             })
         }
     }
